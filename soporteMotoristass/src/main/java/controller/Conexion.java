@@ -9,14 +9,14 @@ public class Conexion {
 
     //ESTADO: PRODUCCIOn
     //UAT
-    /*private static  final String user = "root";
+    private static  final String user = "root";
     private static  final String pass = "alianza96";
     private static  final String url = "jdbc:mysql://localhost/impadi";
-*/
+
     //PRODUCCION
-    private static  final String user = "silverposfx";
+   /* private static  final String user = "silverposfx";
     private static  final String pass = "Sistemas1504@$";
-    private static  final String url = "jdbc:mysql://localhost/silverpos";
+    private static  final String url = "jdbc:mysql://localhost/silverpos";*/
 
     public Connection conectar(){
         con = null;

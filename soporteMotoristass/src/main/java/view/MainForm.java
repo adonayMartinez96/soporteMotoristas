@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 import java.sql.*;
 
 
@@ -29,6 +30,9 @@ public class MainForm extends JFrame {
     private JLabel lblMotorista;
     private JButton btnActualizar;
     private JButton btnGenerarExcel;
+    private JButton btnAnularOrden;
+    private JTextField txtComentario;
+    private JLabel lblComentario;
     private JButton BtnActualizar;
 
     static Connection con;
@@ -46,6 +50,7 @@ public class MainForm extends JFrame {
     GenerarExcelController excelController = new GenerarExcelController();
     ActualizarController actualizarController = new ActualizarController();
     BuscarController buscar = new BuscarController();
+    AnularOrdenController anularOrdenController = new AnularOrdenController();
 
     DefaultTableModel  model = new DefaultTableModel();
 
@@ -94,6 +99,9 @@ public class MainForm extends JFrame {
 
         //btnActualizar lista ventas diarias
         actualizarController.actualizar(btnActualizar,model,tblOrdenes);
+
+        //btnAnularOrden
+        anularOrdenController.anularOrden(tblOrdenes,ordenEncontradaSingleton,txtComentario,btnAnularOrden);
 
         //UAT OFICINA
         //generarExcel.outputeExcel(model,"C:/Users/cliente/Desktop/listaGenerada/lista");
