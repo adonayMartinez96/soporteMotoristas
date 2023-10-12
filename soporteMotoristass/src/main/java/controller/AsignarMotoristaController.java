@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class AsignarMotoristaController {
     Validaciones validaciones = new Validaciones();
+    FilaObtenidaController filaObtenidaController = new FilaObtenidaController();
 
     public void asignarMotorista(JButton btnAsignarMotorista, OrdenSingleton ordenEncontradaSingleton){
 
@@ -17,10 +18,21 @@ public class AsignarMotoristaController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                    String valor = ordenEncontradaSingleton.getAnulada().toString();
 
-                MotoristaModal modal= new MotoristaModal();
-                modal.setVisible(true);
-                validaciones.validarSeleccionOrden(ordenEncontradaSingleton);
+                if(ordenEncontradaSingleton.getAnulada().equals("SI")){
+                    JOptionPane.showMessageDialog(
+                            null,        // Componente padre (null para ventana principal)
+                            "Esta orden esta anulada, no es posible asignar un motorista.", // Mensaje
+                            "Alerta",    // Título de la ventana
+                            JOptionPane.WARNING_MESSAGE  // Tipo de icono (en este caso, advertencia)
+
+                    );
+                }else {
+                    MotoristaModal modal = new MotoristaModal();
+                    modal.setVisible(true);
+                     validaciones.validarSeleccionOrden(ordenEncontradaSingleton);
+                }
             }
         });
     }
