@@ -91,7 +91,7 @@ public class FiltrosBusquedas {
                 String anulada = rs.getString("anulada");
                 String valorFinal = "$"+valor_declarado;
 
-                model.addRow(new Object[]{orden, fecha, hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                model.addRow(new Object[]{orden,hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
             }
             rs.close();;
             st.close();
@@ -186,7 +186,7 @@ public class FiltrosBusquedas {
                 String anulada = rs.getString("anulada");
                 String valorFinal = "$"+valor_declarado;
 
-                model.addRow(new Object[]{orden, fecha, hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                model.addRow(new Object[]{orden, fecha,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
             }
             rs.close();;
             st.close();
@@ -281,7 +281,7 @@ public class FiltrosBusquedas {
                 String anulada = rs.getString("anulada");
                 String valorFinal = "$"+valor_declarado;
 
-                model.addRow(new Object[]{orden, fecha, hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                model.addRow(new Object[]{orden, fecha, nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
             }
             rs.close();;
             st.close();
@@ -340,7 +340,7 @@ public class FiltrosBusquedas {
                     String valorFinal = "$"+valor_declarado;
 
                     System.out.println("estamos en ac "+orden + fecha);
-                    model.addRow(new Object[]{orden, fecha, hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                    model.addRow(new Object[]{orden, fecha, nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
                 }
                 rs.close();;
                 st.close();

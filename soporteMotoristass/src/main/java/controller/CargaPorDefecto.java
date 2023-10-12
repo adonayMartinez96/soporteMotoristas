@@ -39,8 +39,8 @@ public class CargaPorDefecto {
             ResultSet rs = st.executeQuery(ventasDiarias);
 
             model.addColumn("ORDEN");
-            model.addColumn("FECHA_INGRESO");
-            model.addColumn("HORA_CERRO");
+
+            model.addColumn("HORA_ASIGNACION");
             model.addColumn("NOMBRE");
             model.addColumn("TELEFONO");
             model.addColumn("CIUDAD");
@@ -54,7 +54,6 @@ public class CargaPorDefecto {
             model.setRowCount(0);
             while (rs.next()) {
                 String orden = rs.getString("orden");
-                String fecha = rs.getString("fecha_ingreso");
                 String hora_cerro = rs.getString("hora_cerro");
                 String nombre = rs.getString("nombre");
                 String telefono = rs.getString("telefono");
@@ -67,7 +66,7 @@ public class CargaPorDefecto {
                 String anulada = rs.getString("anulada");
                 String valorFinal = "$"+valor_declarado;
 
-                model.addRow(new Object[]{orden, fecha, hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                model.addRow(new Object[]{orden,hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
             }
             rs.close();;
             st.close();
