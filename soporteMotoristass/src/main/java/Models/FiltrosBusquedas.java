@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class FiltrosBusquedas {
 
-    public  void ordenesPorFechas(JTextField fechaInicio, JTextField fechaFinal, JTable tabla, DefaultTableModel  model){
+    public  void ordenesPorFechas(JTextField fechaInicio, JTextField fechaFinal, JTable tabla, DefaultTableModel  model, Integer anuladas){
 
 
         String valor1 = fechaInicio.getText();
@@ -39,7 +39,7 @@ public class FiltrosBusquedas {
                     "from ventasdiarias.venta_encabezado diaria_encabezado\n" +
                     "inner join ventasdiarias.venta_detalle_plus vdp  on\n" +
                     "diaria_encabezado.id =vdp.id_enca\n" +
-                    "where \n" +
+                    "where diaria_encabezado.anulado = "+anuladas+" and  \n" +
                     "DATE_FORMAT(diaria_encabezado.hora_cerro , '%Y-%m-%d %H:%i:%s')  \n" +
                     "BETWEEN '"+sdf.format(fecha1) +"'\n" +
                     "AND '"+sdf.format(fecha2) +"'\n" +
@@ -61,7 +61,7 @@ public class FiltrosBusquedas {
                     "from silverpos_hist.hist_venta_enca hve \n" +
                     "inner join silverpos_hist.hist_venta_deta_plus hvdp on\n" +
                     "hve.id = hvdp.id_enca\n" +
-                    "where \n" +
+                    "where hve.anulado ="+anuladas+" and  \n" +
                     "DATE_FORMAT(hve.hora_cerro , '%Y-%m-%d %H:%i:%s')  \n" +
                     "BETWEEN '"+sdf.format(fecha1) +"'\n" +
                     "AND '"+sdf.format(fecha2) +"'\n" +

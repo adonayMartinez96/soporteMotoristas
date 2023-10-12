@@ -10,12 +10,38 @@ import java.awt.event.ActionListener;
 public class BuscarController {
     FiltrosBusquedas filtrosBusquedas = new FiltrosBusquedas();
 
-    public void buscar(JButton btnBuscar, JTextField txtFechaInicio, JTextField txtFechafin, JTextField txtMotorista, JTextField txtOrden, JTable tblOrdenes, DefaultTableModel model){
+    public void buscar(JButton btnBuscar, JTextField txtFechaInicio, JTextField txtFechafin, JTextField txtMotorista, JTextField txtOrden, JTable tblOrdenes, DefaultTableModel model,JComboBox cbxAnuladas){
+
+
+
+
+
+        //System.out.println("finalAnuladas: "+finalAnuladas);
+
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Object cbxValorPorDefecto =  cbxAnuladas.getSelectedItem();
+
+                Integer anuladas = null;
+                if (cbxValorPorDefecto != null) {
+                    String valorSeleccionado = cbxValorPorDefecto.toString();
+                    if(cbxValorPorDefecto.equals("SI") ){
+                        anuladas = 1;
+                    }else{
+                        anuladas = 0;
+                    }
+
+                } else {
+
+                    // No se ha seleccionado nada
+                    System.out.println("Nada seleccionado.");
+                }
+
+
+
                 if(txtFechaInicio.getText().length()>0  && txtFechafin.getText().length()>0  && txtMotorista.getText().length()==0 && txtOrden.getText().length()==0) {
-                    filtrosBusquedas.ordenesPorFechas(txtFechaInicio, txtFechafin, tblOrdenes,model);
+                    filtrosBusquedas.ordenesPorFechas(txtFechaInicio, txtFechafin, tblOrdenes,model, anuladas);
                     System.out.println("1 exec");
                 }else if(txtFechaInicio.getText().length()>0  && txtFechafin.getText().length()>0  && txtMotorista.getText().length()>0 ){
                     filtrosBusquedas.ordenesPorMotorista(txtFechaInicio, txtFechafin, txtMotorista,tblOrdenes,model);
@@ -25,6 +51,9 @@ public class BuscarController {
                     filtrosBusquedas.ordenPorNoOrden(txtFechaInicio,txtFechafin,txtOrden,tblOrdenes,model);
                     System.out.println("3 exec");
                 }
+
+
+
             }
         });
     }

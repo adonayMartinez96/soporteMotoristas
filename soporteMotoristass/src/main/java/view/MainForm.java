@@ -3,19 +3,20 @@ package view;
 import Models.OrdenSingleton;
 import Models.FiltrosBusquedas;
 import Models.Validaciones;
+import com.toedter.calendar.JCalendar;
 import controller.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
+import java.awt.event.*;
 import java.sql.*;
 
 
 public class MainForm extends JFrame {
     private JPanel MainPanel;
+    private JPanel MainPanel2;
+
     private JLabel lblName;
     private JTextField txtFechaInicio;
     private JTextField txtFechafin;
@@ -33,7 +34,10 @@ public class MainForm extends JFrame {
     private JButton btnAnularOrden;
     private JTextField txtComentario;
     private JLabel lblComentario;
-    private JButton BtnActualizar;
+    private JComboBox cbxAnuladas;
+    private JButton btnFecha1;
+    private JButton btnFecha2;
+
 
     static Connection con;
     static PreparedStatement pst;
@@ -51,6 +55,7 @@ public class MainForm extends JFrame {
     ActualizarController actualizarController = new ActualizarController();
     BuscarController buscar = new BuscarController();
     AnularOrdenController anularOrdenController = new AnularOrdenController();
+    prueba prueba1 = new prueba();
 
     DefaultTableModel  model = new DefaultTableModel();
 
@@ -81,8 +86,12 @@ public class MainForm extends JFrame {
         //carga lista diaria por defecto
         cargaPorDefecto.loadOrdenes(tblOrdenes,model);
 
+        String valorPorDefecto = (String) cbxAnuladas.getSelectedItem();
+
+
+
         //btnBuscar
-        buscar.buscar( btnBuscar, txtFechaInicio, txtFechafin,  txtMotorista, txtOrden, tblOrdenes, model);
+        buscar.buscar( btnBuscar, txtFechaInicio, txtFechafin,  txtMotorista, txtOrden, tblOrdenes, model, cbxAnuladas);
 
         //btnAsignarMotorista
         asignarMotoristaController.asignarMotorista(btnAsignarMotorista,ordenEncontradaSingleton);
@@ -110,8 +119,20 @@ public class MainForm extends JFrame {
         //generarExcel.outputeExcel(model,"C:/Users/cliente/Desktop/REPORTES/lista");
         //estado:prod
         
-        excelController.generarReporteExcel(btnGenerarExcel,model,"C:/Users/cliente/Desktop/REPORTES/lista");
+        excelController.generarReporteExcel(btnGenerarExcel,model,"C:/Users/cliente/Desktop/listaGenerada/lista");
+
+
+
+        btnFecha1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prueba1.mostrar();
+            }
+        });
     }
+
+
+
 
     public static void main(String [] args){
 

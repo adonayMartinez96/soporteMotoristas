@@ -15,7 +15,6 @@ public class CargaPorDefecto {
         try{
             String ventasDiarias = "select \n" +
                     "\t\tconcat(diaria_encabezado.num_doc,'-', diaria_encabezado.no_orden) as orden,\n" +
-                    "\tdiaria_encabezado.fechatransaccion as fecha_ingreso,\n" +
                     "\tdiaria_encabezado.hora_cerro AS hora_cerro,\n" +
                     "\tdiaria_encabezado.cliente_domicilio as NOMBRE,\n" +
                     "\tdiaria_encabezado.observacion as TELEFONO,\n" +
@@ -39,7 +38,6 @@ public class CargaPorDefecto {
             ResultSet rs = st.executeQuery(ventasDiarias);
 
             model.addColumn("ORDEN");
-
             model.addColumn("HORA_ASIGNACION");
             model.addColumn("NOMBRE");
             model.addColumn("TELEFONO");
@@ -54,7 +52,8 @@ public class CargaPorDefecto {
             model.setRowCount(0);
             while (rs.next()) {
                 String orden = rs.getString("orden");
-                String hora_cerro = rs.getString("hora_cerro");
+
+                String hora_asignacion = rs.getString("hora_cerro");
                 String nombre = rs.getString("nombre");
                 String telefono = rs.getString("telefono");
                 String direccion = rs.getString("direccion");
@@ -66,7 +65,7 @@ public class CargaPorDefecto {
                 String anulada = rs.getString("anulada");
                 String valorFinal = "$"+valor_declarado;
 
-                model.addRow(new Object[]{orden,hora_cerro,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
+                model.addRow(new Object[]{orden,hora_asignacion,nombre, telefono,direccion,ciudad,departamento,motorista,valorFinal,borrada,anulada});
             }
             rs.close();;
             st.close();
