@@ -3,7 +3,6 @@ package view;
 import Models.OrdenSingleton;
 import Models.FiltrosBusquedas;
 import Models.Validaciones;
-import com.toedter.calendar.JCalendar;
 import controller.*;
 
 import javax.swing.*;
@@ -36,7 +35,7 @@ public class MainForm extends JFrame {
     private JLabel lblComentario;
     private JComboBox cbxAnuladas;
     private JButton btnFecha1;
-    private JButton btnFecha2;
+    private JButton btnFechaFinal;
 
 
     static Connection con;
@@ -56,6 +55,7 @@ public class MainForm extends JFrame {
     BuscarController buscar = new BuscarController();
     AnularOrdenController anularOrdenController = new AnularOrdenController();
     prueba prueba1 = new prueba();
+    Fecha2 fecha2 = new Fecha2();
 
     DefaultTableModel  model = new DefaultTableModel();
 
@@ -119,14 +119,22 @@ public class MainForm extends JFrame {
         //generarExcel.outputeExcel(model,"C:/Users/cliente/Desktop/REPORTES/lista");
         //estado:prod
         
-        excelController.generarReporteExcel(btnGenerarExcel,model,"C:/Users/cliente/Desktop/listaGenerada/lista");
+        excelController.generarReporteExcel(btnGenerarExcel,model,"C:/Users/cliente/Desktop/REPORTES/lista");
+
 
 
 
         btnFecha1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                prueba1.mostrar();
+                prueba1.mostrar1(txtFechaInicio);
+
+            }
+        });
+        btnFechaFinal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fecha2.mostrar2(txtFechafin);
             }
         });
     }
